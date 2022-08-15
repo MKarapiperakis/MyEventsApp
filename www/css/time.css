@@ -32,14 +32,14 @@
 }
 
 .date {             /*OK*/
-	width: 120px;
-	padding: 5px 8px;
+	width: 130px;
+	padding: 5px 5px;
 	position: absolute;
 	right: 0;
 	/*top: -65px;
 	left: 45px;
 	*/
-	font-size: 8px;
+	font-size: 7px;
 	
 }
 .clock-face {

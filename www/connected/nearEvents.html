@@ -23,7 +23,11 @@
   <link rel="icon" type="image/x-icon" href="../logo\icon.ico">
   <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
   <script src="../js/validate.js" async=""></script>
+<script src="../js/rotate.js"></script>
 
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"/>
 
 
   <link href="../css/style.css" rel="stylesheet">
@@ -52,8 +56,13 @@
       margin: 0;
       border-radius: 0px;
     }
+	
+	h1{
+	font-size: 24px;
+	}
   </style>
   <link href="../css/network.css" rel="stylesheet">
+   <link href="../css/rotate.css" rel="stylesheet">
 </head>
 
 <body class="text-center">
@@ -61,11 +70,12 @@
     <div class="container-fluid">
       <!--<a class="navbar-brand active"   onclick="scrollToTop()" onmouseover="logoHover()" id = "logo">My Events</a>-->
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+      <a class="navbar-toggler collapsed border-0" type="button" data-toggle="collapse" data-target="#collapsingNavbar" style = "background: #343a40">
+            <span> </span>
+            <span> </span>
+            <span> </span>
+        </a>
+      <div class="collapse navbar-collapse justify-content-between" id="collapsingNavbar">
         <ul class="navbar-nav ">
 
         </ul>
@@ -78,6 +88,9 @@
           </li>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#">Κοντινές εκδηλώσεις</a>
+          </li>
+		  <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="editEvent.html">Διαχείριση εκδηλώσεων</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="javascript:end();">Αποσύνδεση</a>
@@ -110,7 +123,7 @@
   <script src="../js/network_status.js" async=""></script>
   <script src="../js/gps.js"></script>
   <script>
-
+var rotate = false;
 
 
 
@@ -287,6 +300,13 @@
               });
 
               marker.setMap(map);
+			  marker.addListener('click', function () {
+             var pref_zoom = map.getZoom();
+			  map.setZoom(pref_zoom + 3);
+			  map.setCenter(marker.position);
+              
+            })
+
             }
             else if (maptypeList[pos] == "custom")   //polygon
             {
@@ -326,6 +346,12 @@
               });
 
               marker.setMap(map);
+			   marker.addListener('click', function () {
+             var pref_zoom = map.getZoom();
+			  map.setZoom(pref_zoom + 3);
+			  map.setCenter(marker.position);
+              
+            })
 
             }//end of if
 
@@ -425,8 +451,8 @@
 
 
   <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-  <script async
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-PFGebXOOGaS42g1pRa7TO_HNMbK5p5k&callback=initMap">
+ <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZ1-i60sv1wcRbNrWmvxWCSXZfYjncsiM&callback=initMap">
     </script>
 
 

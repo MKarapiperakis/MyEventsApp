@@ -11,9 +11,14 @@
   <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/navbar-fixed/">
   <link rel="icon" type="image/x-icon" href="../logo\icon.ico">
   <script src="../js/validate.js" async=""></script>
+  <script src="../js/rotate.js"></script>
 
   <!-- Bootstrap core CSS -->
   <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"/>
 
 
 
@@ -32,6 +37,7 @@
     }
   </style>
   <link href="../css/network.css" rel="stylesheet">
+   <link href="../css/rotate.css" rel="stylesheet">
 
 </head>
 
@@ -41,11 +47,12 @@
     <div class="container-fluid">
       <!--<a class="navbar-brand active"   onclick="scrollToTop()" onmouseover="logoHover()" id = "logo">My Events</a>-->
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+     <a class="navbar-toggler collapsed border-0" type="button" data-toggle="collapse" data-target="#collapsingNavbar" style = "background: #343a40">
+            <span> </span>
+            <span> </span>
+            <span> </span>
+        </a>
+      <div class="collapse navbar-collapse justify-content-between" id="collapsingNavbar">
         <ul class="navbar-nav ">
 
         </ul>
@@ -58,6 +65,9 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" aria-current="page" href="nearEvents.html">Κοντινές εκδηλώσεις</a>
+          </li>
+		  <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="editEvent.html">Διαχείριση εκδηλώσεων</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="javascript:end();">Αποσύνδεση</a>
@@ -136,26 +146,8 @@
   <script src="../js/network_status2.js" async=""></script>
 
   <script>
-    if (localStorage.getItem("Name") == "")
-      window.location.replace("../sign_in.html");
-
-    var prevScrollpos = window.pageYOffset;
-    window.onscroll = function () {
-      var currentScrollPos = window.pageYOffset;
-      if (prevScrollpos > currentScrollPos) {
-        document.getElementById("navbar").style.top = "0";
-      } else {
-        document.getElementById("navbar").style.top = "-170px";
-      }
-      prevScrollpos = currentScrollPos;
-    }
-
-    function scrollToTop() {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      })
-    }
+  var rotate = false;
+ 
 
 
     function end() {
@@ -204,7 +196,8 @@
       });    //end of AJAX
 
     }
-
+	
+	
     function showMap() {
 
       document.getElementById("navbar").style.display = "block";
@@ -812,7 +805,7 @@
 
 
   <script async
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-PFGebXOOGaS42g1pRa7TO_HNMbK5p5k&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZ1-i60sv1wcRbNrWmvxWCSXZfYjncsiM&callback=initMap">
     </script>
 </body>
 
