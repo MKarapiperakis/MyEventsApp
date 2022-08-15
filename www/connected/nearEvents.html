@@ -55,10 +55,22 @@
       padding: 0;
       margin: 0;
       border-radius: 0px;
+      z-index: 1;
     }
 
     h1 {
       font-size: 24px;
+    }
+
+    #panel {
+      position: relative;
+      width: 100vw;
+      margin-top: 5%;
+      padding: 10px;
+      background: transparent;
+      min-height: 300px;
+      max-height: 300px;
+      display: none;
     }
   </style>
   <link href="../css/network.css" rel="stylesheet">
@@ -113,6 +125,7 @@
     </div>
 
     <div id="map"> </div>
+    <div id="panel"></div>
 
 
   </main>
@@ -162,6 +175,7 @@
 
 
     function getPosition() {
+      document.getElementById("getPosition").style.display = "none";
       var options = {
         enableHighAccuracy: true,
         maximumAge: 3600000
@@ -302,11 +316,33 @@
 
               marker.setMap(map);
               marker.addListener('click', function () {
-                var pref_zoom = map.getZoom();
-                map.setZoom(pref_zoom + 3);
-                map.setCenter(marker.position);
+                marker.setVisible(false);
+                initMarker.setVisible(false);
 
-              })
+                var directionsService = new google.maps.DirectionsService();
+                var directionsDisplay = new google.maps.DirectionsRenderer();
+
+
+
+                directionsDisplay.setMap(map);
+                directionsDisplay.setPanel(document.getElementById('panel'));
+                document.getElementById("panel").style.display = "block";
+                var start = { lat: latitude1, lng: longitude1 };
+                var dest = { lat: minLat, lng: minLong };
+
+                var request = {
+                  origin: start,
+                  destination: dest,
+                  travelMode: google.maps.DirectionsTravelMode.DRIVING
+                };
+
+                directionsService.route(request, function (response, status) {
+                  if (status == google.maps.DirectionsStatus.OK) {
+                    directionsDisplay.setDirections(response);
+                  }
+                });
+
+              })	//end of event handler
 
             }
             else if (maptypeList[pos] == "custom")   //polygon
@@ -348,9 +384,32 @@
 
               marker.setMap(map);
               marker.addListener('click', function () {
-                var pref_zoom = map.getZoom();
-                map.setZoom(pref_zoom + 3);
-                map.setCenter(marker.position);
+                marker.setVisible(false);
+                initMarker.setVisible(false);
+
+                var directionsService = new google.maps.DirectionsService();
+                var directionsDisplay = new google.maps.DirectionsRenderer();
+
+
+
+                directionsDisplay.setMap(map);
+                directionsDisplay.setPanel(document.getElementById('panel'));
+                document.getElementById("panel").style.display = "block";
+
+                var start = { lat: latitude1, lng: longitude1 };
+                var dest = { lat: minLat, lng: minLong };
+
+                var request = {
+                  origin: start,
+                  destination: dest,
+                  travelMode: google.maps.DirectionsTravelMode.DRIVING
+                };
+
+                directionsService.route(request, function (response, status) {
+                  if (status == google.maps.DirectionsStatus.OK) {
+                    directionsDisplay.setDirections(response);
+                  }
+                });
 
               })
 
